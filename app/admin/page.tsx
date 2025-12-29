@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { RankingData } from '@/lib/types';
 import { getBadge } from '@/lib/badge';
+import RankingModal from '@/components/RankingModal';
+import ExhibitionListModal from '@/components/ExhibitionListModal';
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -11,6 +13,8 @@ export default function AdminPage() {
   const [rankings, setRankings] = useState<RankingData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isRankingModalOpen, setIsRankingModalOpen] = useState(false);
+  const [sortedRankings, setSortedRankings] = useState<RankingData[]>([]);
 
   useEffect(() => {
     const auth = sessionStorage.getItem('admin-auth');
@@ -49,11 +53,32 @@ export default function AdminPage() {
       if (error) throw error;
 
       setRankings(data || []);
+
+      // Create sorted rankings for modal
+      const uniqueRankings = data?.reduce((acc: RankingData[], curr) => {
+        if (!acc.find(item => item.nickname === curr.nickname)) {
+          acc.push(curr);
+        }
+        return acc;
+      }, []) || [];
+
+      uniqueRankings.sort((a, b) => {
+        if (b.visited_count !== a.visited_count) {
+          return b.visited_count - a.visited_count;
+        }
+        return new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime();
+      });
+
+      setSortedRankings(uniqueRankings);
     } catch (err) {
       console.error('Failed to fetch rankings:', err);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleOpenRankingModal = () => {
+    setIsRankingModalOpen(true);
   };
 
   if (!isAuthenticated) {
@@ -96,6 +121,12 @@ export default function AdminPage() {
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
           <div className="flex gap-3">
+            <button
+              onClick={handleOpenRankingModal}
+              className="px-4 py-2 bg-green-500/80 hover:bg-green-500 text-white rounded-lg transition-colors"
+            >
+              순위 확인하기
+            </button>
             <button
               onClick={fetchRankings}
               className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition-colors"
@@ -207,6 +238,17 @@ export default function AdminPage() {
           )}
         </div>
       </div>
+
+      <RankingModal
+        isOpen={isRankingModalOpen}
+        onClose={() => setIsRankingModalOpen(false)}
+        rankings={sortedRankings}
+        currentUserRanking={null}
+        isLoading={false}
+        visitedCount={0}
+        needsNickname={false}
+        onSaveWithNickname={() => {}}
+      />
     </main>
   );
 }
