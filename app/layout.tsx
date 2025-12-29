@@ -1,0 +1,21 @@
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "아트프렌즈 2025 전시 빙고",
+  description: "2025년 미술 전시 방문 기록 빙고 게임",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="ko">
+      <body className="antialiased">
+        {children}
+      </body>
+    </html>
+  );
+}
