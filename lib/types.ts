@@ -10,3 +10,12 @@ export interface BingoCell {
 }
 
 export type BingoState = BingoCell[];
+
+export interface RankingData {
+  id?: number;
+  nickname: string;
+  visited_exhibitions: string[];
+  visited_count: number;
+  timestamp: string;
+  created_at?: string;
+}

@@ -4,11 +4,14 @@ import { useState, useEffect, useCallback } from 'react';
 import Header from '@/components/Header';
 import BingoBoard from '@/components/BingoBoard';
 import SaveImageButton from '@/components/SaveImageButton';
+import RankingButton from '@/components/RankingButton';
+import { BingoCell } from '@/lib/types';
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
   const [visitedCount, setVisitedCount] = useState(0);
   const [totalCount, setTotalCount] = useState(16);
+  const [cells, setCells] = useState<BingoCell[]>([]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -16,6 +19,10 @@ export default function Home() {
 
   const handleVisitedCountChange = useCallback((count: number) => {
     setVisitedCount(count);
+  }, []);
+
+  const handleCellsChange = useCallback((newCells: BingoCell[]) => {
+    setCells(newCells);
   }, []);
 
   return (
@@ -28,6 +35,7 @@ export default function Home() {
             {isMounted ? (
               <BingoBoard
                 onVisitedCountChange={handleVisitedCountChange}
+                onCellsChange={handleCellsChange}
               />
             ) : (
               <div className="grid grid-cols-4 gap-2 md:gap-3 w-full max-w-[480px] mx-auto">
@@ -52,6 +60,7 @@ export default function Home() {
 
       <div className="max-w-[480px] mx-auto px-4 pb-8 space-y-3">
         <SaveImageButton targetId="bingo-export" />
+        <RankingButton cells={cells} />
       </div>
     </main>
   );
