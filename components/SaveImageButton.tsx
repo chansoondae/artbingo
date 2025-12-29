@@ -17,10 +17,24 @@ export default function SaveImageButton({ targetId }: SaveImageButtonProps) {
         pixelRatio: 2,
       });
 
-      const link = document.createElement('a');
-      link.download = '아트프렌즈_전시빙고_2025.png';
-      link.href = dataUrl;
-      link.click();
+      // Convert data URL to blob
+      const response = await fetch(dataUrl);
+      const blob = await response.blob();
+
+      // Check if Web Share API is available (mobile devices)
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], '아트프렌즈_전시빙고_2025.png', { type: 'image/png' })] })) {
+        const file = new File([blob], '아트프렌즈_전시빙고_2025.png', { type: 'image/png' });
+        await navigator.share({
+          files: [file],
+          title: '아트프렌즈 전시빙고 2025',
+        });
+      } else {
+        // Fallback for desktop or browsers without share support
+        const link = document.createElement('a');
+        link.download = '아트프렌즈_전시빙고_2025.png';
+        link.href = dataUrl;
+        link.click();
+      }
     } catch (error) {
       console.error('Failed to save image:', error);
       alert('이미지 저장에 실패했습니다. 다시 시도해주세요.');
