@@ -118,13 +118,13 @@ export default function RankingModal({
               )}
 
               <div className="space-y-2">
-                <h3 className="font-bold text-gray-900 mb-3">전체 순위</h3>
+                <h3 className="font-bold text-gray-900 mb-3">전체 순위 (상위 50위)</h3>
                 {rankings.length === 0 ? (
                   <p className="text-center text-gray-500 py-8">
                     아직 등록된 기록이 없습니다.
                   </p>
                 ) : (
-                  rankings.map((ranking, index) => {
+                  rankings.slice(0, 50).map((ranking, index) => {
                     const badge = getBadge(ranking.visited_count);
                     return (
                       <div
