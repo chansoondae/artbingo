@@ -73,6 +73,13 @@ export default function BingoBoard({ onVisitedCountChange, onCellsChange }: Bing
     setCells((prev) => [...prev, ...newRowCells]);
   };
 
+  const handleReset = () => {
+    if (confirm('정말 초기화하시겠습니까? 모든 데이터가 삭제됩니다.')) {
+      localStorage.removeItem('bingo-cells');
+      setCells(initialExhibitions);
+    }
+  };
+
   const editingCell = cells.find((cell) => cell.id === editingCellId);
 
   return (
@@ -91,14 +98,23 @@ export default function BingoBoard({ onVisitedCountChange, onCellsChange }: Bing
             ))}
         </div>
 
-        {/* Add row button */}
-        <button
-          onClick={handleAddRow}
-          className="w-full mt-3 py-3 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
-        >
-          <span className="text-xl">+</span>
-          <span>행 추가하기 (4칸)</span>
-        </button>
+        {/* Add row and reset buttons */}
+        <div className="flex gap-2 mt-3">
+          <button
+            onClick={handleAddRow}
+            className="flex-1 py-3 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+          >
+            <span className="text-xl">+</span>
+            <span>행 추가하기</span>
+          </button>
+          <button
+            onClick={handleReset}
+            className="flex-1 py-3 bg-red-500/80 hover:bg-red-500 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+          >
+            <span className="text-xl">↻</span>
+            <span>초기화</span>
+          </button>
+        </div>
       </div>
 
       <CustomCellModal
