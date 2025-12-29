@@ -18,7 +18,13 @@ export default function BingoCell({ cell, onToggle, onEdit }: BingoCellProps) {
     }
   };
 
+  const handleEditClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onEdit?.();
+  };
+
   const isEmptyCustomCell = cell.type === 'custom' && !cell.museum && !cell.exhibition;
+  const isFilledCustomCell = cell.type === 'custom' && (cell.museum || cell.exhibition);
 
   return (
     <div
@@ -39,6 +45,29 @@ export default function BingoCell({ cell, onToggle, onEdit }: BingoCellProps) {
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{ backgroundImage: `url(${cell.posterImage})` }}
         />
+      )}
+
+      {/* Edit button for filled custom cells */}
+      {isFilledCustomCell && (
+        <button
+          onClick={handleEditClick}
+          className="absolute top-1 right-1 z-10 w-6 h-6 flex items-center justify-center bg-white/90 hover:bg-white rounded-full shadow-md transition-all duration-200 hover:scale-110"
+          aria-label="수정"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            className="w-3.5 h-3.5 text-gray-700"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+        </button>
       )}
 
       {/* Content */}

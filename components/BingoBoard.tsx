@@ -61,6 +61,18 @@ export default function BingoBoard({ onVisitedCountChange, onCellsChange }: Bing
     setEditingCellId(null);
   };
 
+  const handleDeleteCell = (id: string) => {
+    if (confirm('이 전시를 삭제하시겠습니까?')) {
+      setCells((prev) =>
+        prev.map((cell) =>
+          cell.id === id && cell.type === 'custom'
+            ? { ...cell, museum: '', exhibition: '', isVisited: false }
+            : cell
+        )
+      );
+    }
+  };
+
   const handleAddRow = () => {
     const newRowCells: BingoCellType[] = Array.from({ length: 4 }, (_, i) => ({
       id: `custom-${Date.now()}-${i}`,
@@ -124,6 +136,7 @@ export default function BingoBoard({ onVisitedCountChange, onCellsChange }: Bing
           setEditingCellId(null);
         }}
         onSave={handleSaveCustomCell}
+        onDelete={editingCellId ? () => handleDeleteCell(editingCellId) : undefined}
         initialMuseum={editingCell?.museum}
         initialExhibition={editingCell?.exhibition}
       />

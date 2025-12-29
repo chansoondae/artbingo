@@ -6,6 +6,7 @@ interface CustomCellModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (museum: string, exhibition: string) => void;
+  onDelete?: () => void;
   initialMuseum?: string;
   initialExhibition?: string;
 }
@@ -14,6 +15,7 @@ export default function CustomCellModal({
   isOpen,
   onClose,
   onSave,
+  onDelete,
   initialMuseum = '',
   initialExhibition = '',
 }: CustomCellModalProps) {
@@ -36,11 +38,16 @@ export default function CustomCellModal({
     }
   };
 
-  const handleCancel = () => {
-    setMuseum(initialMuseum);
-    setExhibition(initialExhibition);
-    onClose();
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete();
+      setMuseum('');
+      setExhibition('');
+      onClose();
+    }
   };
+
+  const isEditingExistingCell = initialMuseum || initialExhibition;
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -80,12 +87,14 @@ export default function CustomCellModal({
         </div>
 
         <div className="flex gap-3 mt-6">
-          <button
-            onClick={handleCancel}
-            className="flex-1 px-4 py-2 bg-gray-200 text-text-primary rounded-lg font-medium hover:bg-gray-300 transition-colors"
-          >
-            취소
-          </button>
+          {isEditingExistingCell && onDelete && (
+            <button
+              onClick={handleDelete}
+              className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors"
+            >
+              삭제
+            </button>
+          )}
           <button
             onClick={handleSave}
             disabled={!museum.trim() || !exhibition.trim()}
