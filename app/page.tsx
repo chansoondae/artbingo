@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import Header from '@/components/Header';
 import BingoBoard from '@/components/BingoBoard';
-import SaveImageButton from '@/components/SaveImageButton';
 import RankingButton from '@/components/RankingButton';
 import { BingoCell } from '@/lib/types';
 
@@ -59,7 +58,6 @@ export default function Home() {
       </div>
 
       <div className="max-w-[480px] mx-auto px-4 pb-8 space-y-3">
-        <SaveImageButton targetId="bingo-export" />
         <RankingButton cells={cells} />
       </div>
     </main>
