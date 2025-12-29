@@ -81,7 +81,13 @@ export default function Header({ visitedCount, totalCount }: HeaderProps) {
           )}
         </div>
         {badge && (
-          <div className={`${badge.color} ${badge.textColor} px-3 py-1 rounded-full text-sm font-bold shadow-lg flex items-center gap-1`}>
+          <div
+            className="px-3 py-1 rounded-full text-sm font-bold shadow-lg flex items-center gap-1"
+            style={{
+              background: badge.gradient,
+              color: badge.textColor
+            }}
+          >
             <span>{badge.icon}</span>
             <span>{badge.name}</span>
           </div>

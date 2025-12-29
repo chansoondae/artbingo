@@ -157,7 +157,13 @@ export default function RankingModal({
                                   {ranking.nickname}
                                 </p>
                                 {badge && (
-                                  <div className={`${badge.color} ${badge.textColor} px-2 py-0.5 rounded-full text-xs font-bold flex items-center gap-1`}>
+                                  <div
+                                    className="px-2 py-0.5 rounded-full text-xs font-bold flex items-center gap-1"
+                                    style={{
+                                      background: badge.gradient,
+                                      color: badge.textColor
+                                    }}
+                                  >
                                     <span>{badge.icon}</span>
                                     <span>{badge.name}</span>
                                   </div>
