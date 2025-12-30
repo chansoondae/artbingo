@@ -19,3 +19,12 @@ export interface RankingData {
   timestamp: string;
   created_at?: string;
 }
+
+export interface ExhibitionGroup {
+  id?: number;
+  grouped_name: string;
+  museum: string;
+  exhibition: string;
+  original_names: string[];
+  created_at?: string;
+}

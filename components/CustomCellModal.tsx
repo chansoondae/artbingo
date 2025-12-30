@@ -47,6 +47,12 @@ export default function CustomCellModal({
     }
   };
 
+  const handleCancel = () => {
+    setMuseum('');
+    setExhibition('');
+    onClose();
+  };
+
   const isEditingExistingCell = initialMuseum || initialExhibition;
 
   return (
@@ -95,6 +101,12 @@ export default function CustomCellModal({
               삭제
             </button>
           )}
+          <button
+            onClick={handleCancel}
+            className="flex-1 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+          >
+            취소
+          </button>
           <button
             onClick={handleSave}
             disabled={!museum.trim() || !exhibition.trim()}
