@@ -37,7 +37,6 @@ export default function BulkAddModal({
       const { data, error } = await supabase
         .from('exhibition_groups_stats')
         .select('*')
-        .order('count', { ascending: false })
         .order('grouped_name', { ascending: true });
 
       if (error) throw error;
