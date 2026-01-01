@@ -1,0 +1,180 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.typeCode {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #FFD700;
+  margin-bottom: 1.5rem;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.coverImage {
+  object-fit: contain;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+}
+
+.statsCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.statsTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #F5847A;
+  margin-bottom: 1rem;
+}
+
+.statsText {
+  font-size: 1.1rem;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contentGrid .section {
+  margin-bottom: 0;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #F5847A;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid rgba(245, 132, 122, 0.4);
+  padding-bottom: 0.5rem;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+  color: #333333;
+}
+
+.list li::before {
+  content: "•";
+  color: #E53935;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.artworkList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.artworkItem {
+  background-color: rgba(34, 197, 94, 0.8);
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+}
+
+.navigation {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(59, 130, 246, 0.8);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button:hover {
+  background-color: rgb(59, 130, 246);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .imageContainer {
+    height: 450px;
+  }
+  
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .button {
+    width: 100%;
+    max-width: 250px;
+  }
+}

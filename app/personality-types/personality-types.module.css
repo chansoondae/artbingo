@@ -1,0 +1,134 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.cardLink:hover {
+  transform: translateY(-5px);
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.imageContainer {
+  width: 100%;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.cardImage {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.05);
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #F5847A;
+  margin: 1rem 1.25rem 0.5rem;
+}
+
+.cardType {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #E53935;
+  margin: 0 1.25rem 0.5rem;
+}
+
+.cardDescription {
+  font-size: 0.9rem;
+  color: #4b5563; /* gray-600 */
+  margin: 0 1.25rem 0.5rem;
+  flex-grow: 1;
+}
+
+.preferredArt {
+  font-size: 0.85rem;
+  color: #6b7280; /* gray-500 */
+  margin: 0.5rem 1.25rem 1.25rem;
+  font-style: italic;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(to right, #F5847A, #E53935);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: linear-gradient(to right, #E53935, #C62828);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}

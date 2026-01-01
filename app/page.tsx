@@ -49,10 +49,10 @@ export default function Home() {
             <p className="text-xl md:text-2xl font-bold text-white">
               올해 미술 전시 어디까지 가봤니?
             </p>
-            <p className="text-sm text-white/90 leading-relaxed">
+            {/* <p className="text-sm text-white/90 leading-relaxed">
               마지막 4칸은 자유롭게 채워서<br />
               네이버카페 아트프렌즈에 인증!<br />
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

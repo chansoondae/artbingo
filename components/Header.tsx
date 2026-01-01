@@ -43,7 +43,7 @@ export default function Header({ visitedCount, totalCount }: HeaderProps) {
   };
 
   return (
-    <header className="text-center py-8">
+    <header className="text-center py-4">
       <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
         {isEditing ? (
           <div className="flex items-center justify-center gap-2">

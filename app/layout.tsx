@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import BottomNav from "@/components/BottomNav";
 
 export const metadata: Metadata = {
   title: "아트프렌즈 2025 전시 빙고",
@@ -15,6 +16,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className="antialiased">
         {children}
+        <BottomNav />
       </body>
     </html>
   );

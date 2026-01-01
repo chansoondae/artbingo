@@ -1,0 +1,138 @@
+.progressContainer {
+  width: 100%;
+  height: 6px;
+  background-color: #e2e8f0;
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(to right, #F5847A, #E53935);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.questionNumber {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #FFD700;
+  margin-bottom: 0.5rem;
+}
+
+.instruction {
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .optionsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.optionCard {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+}
+
+.optionCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  border-color: #E53935;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 66%; /* 3:2 Aspect Ratio */
+  background-color: #f3f4f6;
+}
+
+.optionImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.imagePlaceholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9fafb;
+  padding: 1rem;
+  text-align: center;
+}
+
+.optionInfo {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.artworkTitle {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #4b5563;
+  margin-bottom: 0.25rem;
+}
+
+.artistName {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Results Page Styles */
+.resultCard {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #f3e8ff;
+}
+
+.typeTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #7e22ce;
+  margin-bottom: 1rem;
+}
+
+.typeDescription {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-bottom: 2rem;
+}
+
+.selectedArtworks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.selectedArtworkImage {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
