@@ -30,8 +30,8 @@ export default function Fortune2026Page() {
         {/* 안내 텍스트 */}
         <div className="mt-8 text-center">
           <p className="text-white/90 text-lg leading-relaxed">
-            2026년 병오년(丙午年)은 붉은색과 불의 기운을 지닌 '병(丙)'과<br />
-            말을 상징하는 '오(午)'가 만나는 해입니다.
+            2026년 병오년(丙午年)은 붉은색과 불의 기운을 지닌 &apos;병(丙)&apos;과<br />
+            말을 상징하는 &apos;오(午)&apos;가 만나는 해입니다.
           </p>
         </div>
 

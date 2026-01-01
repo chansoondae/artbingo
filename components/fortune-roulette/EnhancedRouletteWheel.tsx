@@ -83,7 +83,7 @@ export default function EnhancedRouletteWheel({
     };
 
     animate();
-  }, [rotation, duration, isSpinning, phase, sectionAngle, onTick]);
+  }, [rotation, duration, isSpinning, phase, sectionAngle, onTick, currentRotation]);
 
   return (
     <div className="relative w-full h-full">

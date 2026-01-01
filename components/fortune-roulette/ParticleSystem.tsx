@@ -126,7 +126,7 @@ export default function ParticleSystem({
       }
       particlesRef.current = [];
     };
-  }, [isActive, centerX, centerY, intensity, type]);
+  }, [isActive, centerX, centerY, intensity, type, colors, particleCount]);
 
   return (
     <canvas
