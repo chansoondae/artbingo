@@ -43,7 +43,7 @@ export function sortArtists(artists: Artist[], sortType: SortType): Artist[] {
     case 'english':
       return sorted.sort((a, b) => a.englishName.localeCompare(b.englishName, 'en'));
     case 'popularity':
-      return sorted.sort((a, b) => b.popularityScore - a.popularityScore);
+      return sorted.sort((a, b) => (b.popularityScore || 0) - (a.popularityScore || 0));
     default:
       return sorted;
   }
