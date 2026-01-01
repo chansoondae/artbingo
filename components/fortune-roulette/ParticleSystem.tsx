@@ -31,21 +31,21 @@ export default function ParticleSystem({
 }: ParticleSystemProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
-  const animationFrameRef = useRef<number>();
-
-  const colors = {
-    flame: ['#FFD700', '#FF6B6B', '#E63946', '#FFBE0B'],
-    spark: ['#FFD700', '#FFFFFF', '#FFBE0B'],
-    ember: ['#E63946', '#9D0208', '#FF6B6B'],
-  };
-
-  const particleCount = {
-    low: 3,
-    medium: 5,
-    high: 10,
-  };
+  const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
+    const colors = {
+      flame: ['#FFD700', '#FF6B6B', '#E63946', '#FFBE0B'],
+      spark: ['#FFD700', '#FFFFFF', '#FFBE0B'],
+      ember: ['#E63946', '#9D0208', '#FF6B6B'],
+    };
+
+    const particleCount = {
+      low: 3,
+      medium: 5,
+      high: 10,
+    };
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -126,7 +126,7 @@ export default function ParticleSystem({
       }
       particlesRef.current = [];
     };
-  }, [isActive, centerX, centerY, intensity, type, colors, particleCount]);
+  }, [isActive, centerX, centerY, intensity, type]);
 
   return (
     <canvas

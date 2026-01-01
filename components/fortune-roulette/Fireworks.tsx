@@ -22,7 +22,7 @@ interface FireworksProps {
 export default function Fireworks({ trigger, onComplete }: FireworksProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<FireworkParticle[]>([]);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | null>(null);
   const completedRef = useRef(false);
 
   useEffect(() => {
