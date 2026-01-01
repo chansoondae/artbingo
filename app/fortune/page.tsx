@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { parseArtistsJSON } from '@/lib/artists';
 import FortuneRoulette from '@/components/fortune-roulette/FortuneRoulette';
@@ -25,7 +26,9 @@ export default function Fortune2026Page() {
         </div>
 
         {/* 룰렛 */}
-        <FortuneRoulette allArtists={artists} />
+        <Suspense fallback={<div className="text-center text-white">로딩 중...</div>}>
+          <FortuneRoulette allArtists={artists} />
+        </Suspense>
 
         {/* 안내 텍스트 */}
         <div className="mt-8 text-center">
