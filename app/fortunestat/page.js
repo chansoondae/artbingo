@@ -3,13 +3,21 @@
 import { useEffect, useState } from 'react';
 import { db } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import { parseArtistsJSON } from '@/lib/artists';
+import artistsData from '@/data/artists.json';
 import Link from 'next/link';
 
 export default function FortuneStatPage() {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
-  const allArtists = parseArtistsJSON();
+
+  // JSON 데이터를 Artist 형식으로 변환
+  const allArtists = artistsData.map((item) => ({
+    koreanName: item.한글이름,
+    englishName: item.영어이름,
+    id: item.id,
+    fortuneText: item.운세,
+    keywords: item.keywords,
+  }));
 
   useEffect(() => {
     const fetchStats = async () => {
