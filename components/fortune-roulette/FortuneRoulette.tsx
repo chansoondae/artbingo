@@ -115,7 +115,11 @@ export default function FortuneRoulette({ allArtists }: FortuneRouletteProps) {
 
         if (!statsDoc.exists()) {
           // 문서가 없으면 생성
-          const initialData = {
+          const initialData: {
+            totalSpins: number;
+            artists: { [key: string]: number };
+            nicknames?: { [key: string]: number };
+          } = {
             totalSpins: 1,
             artists: {
               [artist.id || '']: 1
