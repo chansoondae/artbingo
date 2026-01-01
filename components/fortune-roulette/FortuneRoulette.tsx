@@ -11,7 +11,7 @@ import ParticleSystem from './ParticleSystem';
 import Fireworks from './Fireworks';
 import HorseAnimation from './HorseAnimation';
 import { db } from '@/lib/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, runTransaction, increment } from 'firebase/firestore';
 
 interface FortuneRouletteProps {
   allArtists: Artist[];
@@ -94,12 +94,13 @@ export default function FortuneRoulette({ allArtists }: FortuneRouletteProps) {
     reset();
   };
 
-  // Firebase에 결과 저장
+  // Firebase에 결과 저장 및 통계 업데이트
   const saveFortuneResult = async (artist: Artist) => {
     try {
       const nickname = localStorage.getItem('artbingo-nickname');
       const timestamp = new Date();
 
+      // 운세 결과 저장
       await addDoc(collection(db, 'fortuneResults'), {
         nickname: nickname || '',
         artistId: artist.id || '',
@@ -107,7 +108,29 @@ export default function FortuneRoulette({ allArtists }: FortuneRouletteProps) {
         timestamp
       });
 
-      console.log('운세 결과가 저장되었습니다.');
+      // 통계 업데이트
+      const statsRef = doc(db, 'statistics', 'fortuneStats');
+      await runTransaction(db, async (transaction) => {
+        const statsDoc = await transaction.get(statsRef);
+
+        if (!statsDoc.exists()) {
+          // 문서가 없으면 생성
+          transaction.set(statsRef, {
+            totalSpins: 1,
+            artists: {
+              [artist.id || '']: 1
+            }
+          });
+        } else {
+          // 총 시도 횟수 증가
+          transaction.update(statsRef, {
+            totalSpins: increment(1),
+            [`artists.${artist.id || ''}`]: increment(1)
+          });
+        }
+      });
+
+      console.log('운세 결과 및 통계가 저장되었습니다.');
     } catch (error) {
       console.error('운세 결과 저장 중 오류 발생:', error);
       // 저장 실패해도 사용자 경험에 영향을 주지 않도록 에러를 삼킴
