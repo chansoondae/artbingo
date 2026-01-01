@@ -71,6 +71,15 @@ export default function FortuneStatPage() {
     };
   }).sort((a, b) => b.count - a.count);
 
+  // 닉네임별 통계 계산
+  const nicknameStats = Object.entries(stats.nicknames || {}).map(([nickname, count]) => {
+    return {
+      nickname: nickname,
+      count: count,
+      percentage: ((count / stats.totalSpins) * 100).toFixed(2)
+    };
+  }).sort((a, b) => b.count - a.count);
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#E63946] via-[#9D0208] to-[#1A1A1A] py-8 px-4">
       <div className="max-w-4xl mx-auto">
@@ -98,6 +107,39 @@ export default function FortuneStatPage() {
             </div>
           </div>
         </div>
+
+        {/* 닉네임별 순위 */}
+        {nicknameStats.length > 0 && (
+          <div className="bg-white rounded-2xl p-6 shadow-2xl mb-8">
+            <h2 className="text-2xl font-bold text-[#E63946] mb-6">👤 닉네임별 시도 순위</h2>
+            <div className="space-y-3">
+              {nicknameStats.slice(0, 20).map((user, index) => (
+                <div
+                  key={user.nickname}
+                  className="flex items-center justify-between p-4 bg-gradient-to-r from-white to-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold text-white ${
+                      index === 0 ? 'bg-[#FFD700]' :
+                      index === 1 ? 'bg-[#C0C0C0]' :
+                      index === 2 ? 'bg-[#CD7F32]' :
+                      'bg-gray-400'
+                    }`}>
+                      {index + 1}
+                    </div>
+                    <div>
+                      <p className="font-bold text-lg text-gray-800">{user.nickname}</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-xl text-[#E63946]">{user.count}회</p>
+                    <p className="text-sm text-gray-500">{user.percentage}%</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* 예술가별 순위 */}
         <div className="bg-white rounded-2xl p-6 shadow-2xl">

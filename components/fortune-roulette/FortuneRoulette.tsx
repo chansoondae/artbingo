@@ -115,18 +115,34 @@ export default function FortuneRoulette({ allArtists }: FortuneRouletteProps) {
 
         if (!statsDoc.exists()) {
           // 문서가 없으면 생성
-          transaction.set(statsRef, {
+          const initialData = {
             totalSpins: 1,
             artists: {
               [artist.id || '']: 1
             }
-          });
+          };
+
+          // 닉네임이 있으면 닉네임별 통계도 추가
+          if (nickname) {
+            initialData.nicknames = {
+              [nickname]: 1
+            };
+          }
+
+          transaction.set(statsRef, initialData);
         } else {
-          // 총 시도 횟수 증가
-          transaction.update(statsRef, {
+          // 총 시도 횟수 및 예술가별 횟수 증가
+          const updates = {
             totalSpins: increment(1),
             [`artists.${artist.id || ''}`]: increment(1)
-          });
+          };
+
+          // 닉네임이 있으면 닉네임별 횟수도 증가
+          if (nickname) {
+            updates[`nicknames.${nickname}`] = increment(1);
+          }
+
+          transaction.update(statsRef, updates);
         }
       });
 
