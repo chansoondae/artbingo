@@ -2,6 +2,33 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { parseArtistsJSON } from '@/lib/artists';
 import FortuneRoulette from '@/components/fortune-roulette/FortuneRoulette';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '2026 병오년 새해 운세 룰렛 | 아트프렌즈',
+  description: '붉은 말의 해 2026년, 예술가와 함께하는 특별한 새해 운세를 확인해보세요. Art Friends와 함께하는 병오년 운세 룰렛.',
+  keywords: '2026 운세, 병오년, 새해 운세, 아트프렌즈, 예술가 운세, 말의 해',
+  openGraph: {
+    title: '2026 병오년 새해 운세 룰렛 | 아트프렌즈',
+    description: '붉은 말의 해 2026년, 예술가와 함께하는 특별한 새해 운세',
+    images: [
+      {
+        url: '/og-fortune.jpg',
+        width: 1200,
+        height: 630,
+        alt: '2026 병오년 운세 룰렛',
+      },
+    ],
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '2026 병오년 새해 운세 룰렛',
+    description: '붉은 말의 해 2026년, 예술가와 함께하는 특별한 새해 운세',
+    images: ['/og-fortune.jpg'],
+  },
+};
 
 export default function Fortune2026Page() {
   const artists = parseArtistsJSON();

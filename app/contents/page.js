@@ -2,6 +2,33 @@ import Link from 'next/link'
 import { supabase } from '../../lib/supabase'
 import ContentsClient from './ContentsClient'
 
+// 메타데이터 설정
+export const metadata = {
+  title: '아트프렌즈 인기 콘텐츠 TOP 300 | Art Friends',
+  description: '2025년 조회수 기준 아트프렌즈 인기 콘텐츠를 확인하세요. 카테고리별, 작성자별로 다양한 미술 콘텐츠를 탐색할 수 있습니다.',
+  keywords: '아트프렌즈, 미술 콘텐츠, 전시 정보, 미술관, 갤러리, 인기 콘텐츠',
+  openGraph: {
+    title: '아트프렌즈 인기 콘텐츠 TOP 300',
+    description: '2025년 조회수 기준 아트프렌즈 인기 콘텐츠. 카테고리별, 작성자별 미술 콘텐츠 탐색',
+    images: [
+      {
+        url: '/og-contents.jpg',
+        width: 1200,
+        height: 630,
+        alt: '아트프렌즈 인기 콘텐츠',
+      },
+    ],
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '아트프렌즈 인기 콘텐츠 TOP 300',
+    description: '2025년 조회수 기준 아트프렌즈 인기 콘텐츠',
+    images: ['/og-contents.jpg'],
+  },
+}
+
 // 빌드 시 데이터 가져오기 (SSG)
 async function getContents() {
   const { data, error } = await supabase
