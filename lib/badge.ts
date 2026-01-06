@@ -1,5 +1,29 @@
 export function getBadge(count: number) {
-  if (count >= 50) {
+  if (count >= 250) {
+    return {
+      name: '아트신',
+      gradient: '#fce7f3',
+      color: 'bg-pink-200',
+      textColor: 'text-pink-900',
+      icon: '🎨'
+    };
+  } else if (count >= 200) {
+    return {
+      name: '앰버서더',
+      gradient: '#fbcfe8',
+      color: 'bg-pink-300',
+      textColor: 'text-pink-900',
+      icon: '🌟'
+    };
+  } else if (count >= 100) {
+    return {
+      name: '레전드',
+      gradient: '#fbbf24',
+      color: 'bg-amber-300',
+      textColor: 'text-amber-900',
+      icon: '⭐'
+    };
+  } else if (count >= 50) {
     return {
       name: '그랜드 마스터',
       gradient: '#e9d5ff',

@@ -25,6 +25,12 @@ export default function BottomNav() {
       icon: '🎭',
       label: '성격',
       active: pathname === '/personality'
+    },
+    {
+      href: '/contents',
+      icon: '📊',
+      label: '콘텐츠',
+      active: pathname === '/contents'
     }
   ];
 
